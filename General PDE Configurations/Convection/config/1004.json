@@ -1,0 +1,54 @@
+{
+  "id": 1004,
+  "seed": 500,
+  "stage": 1,
+  "model_type": "hyper-pinn",
+  "pde": "convection",
+  "device": "cuda:0",
+  "max_iter": 15001,
+  "network": {
+    "in_dim": 2,
+    "out_dim": 1,
+    "num_layers": 7,
+    "hidden_dim": 8,
+    "latent_size": 2,
+    "latent_reg": 0.01
+  },
+  "train_set": {
+    "num_train": 500,
+    "num_bc": 5000,
+    "num_ic": 5000,
+    "f_scale": 0.005,
+    "num_test": 1000
+  },
+  "validate_set": {
+    "num_res": 10000,
+    "num_bc": 5000,
+    "num_ic": 5000
+  },
+  "sampler":{
+    "types": ["uniform", "dats", "self_pace"],
+    "type": "dats",
+    "n_way": 5,
+    "use_all": true,
+    "task_no": 10,
+    "eta": 1,
+    "start_random": true,
+    "residual_sampling": true,
+    "kl": "consecutive",
+    "epsilon": 0.01,
+    "period": 200
+  },
+  "residual_sampler":{
+    "types": ["fixed", "random", "half_random", "rad"],
+    "type": "fixed",
+    "adaptive_type": "non_gradual",
+    "period": 10
+  },
+  "test_params": [[1, 1], [2, 2]],
+  "loss":{
+    "mse_treshold": [1e-1, 5e-2, 1e-2, 5e-3, 1e-3, 5e-4, 1e-4, 5e-5, 1e-5],
+    "l2_treshold": [5e-1, 3e-1, 1e-1, 1e-2],
+    "loss_no_improve_steps": 30
+  }
+}

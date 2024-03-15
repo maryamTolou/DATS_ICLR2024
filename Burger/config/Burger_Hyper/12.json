@@ -1,0 +1,71 @@
+{
+  "id":12,
+  "device": "cuda:1",
+  "num_train": 3000,
+  "seed": 10,
+  "stage": 1,
+  "model_type": "hyper-pinn",
+  "pde": "burger",
+  "latent_size": 1,
+  "latent_reg": 0,
+  "num_layers": 7,
+  "use_cell": false,
+  "n_cells": 16,
+  "cell_dim": 4,
+  "cell_size_t": 16,
+  "cell_size_x": 16,
+  "in_dim": 2,
+  "out_dim": 1,
+  "hidden_dim": 8,
+  "random_f": false,
+  "num_ic": 100,
+  "num_bc": 100,
+  "lower_bound": 1e-3,
+  "upper_bound": 0.1,
+  "tag": "",
+  "params": [0.001956398343517065, 0.0059411339849650335, 0.00821434358491943, 0.013667163564620072, 0.04768611697714469, 0.07232633896483534],
+  "f_scale": 0.1,
+  "optim": "adam",
+  "lr": 0.0001,
+  "max_iter": 20000,
+  "nu": 0.0001,
+  "nus": [],
+  "fine_tune_iter": 1,
+  "iter_budget": 0,
+  "gradual_sampling": false,
+  "test_nus": [0.0010234114021054528, 0.006826071834272386, 0.007149428986597577],
+  "data_path": "Burger/Data/Burger_full/",
+  "validating": {
+    "num_ic": 5000,
+    "num_bc": 5000,
+    "num_res": 1000,
+    "f_scale": 0.1
+  },
+
+  "sampler":{
+    "type": "dats",
+    "n_way": 5,
+    "use_all": true,
+    "eta": 10,
+    "residual_sampling": true,
+    "kl": "uniform",
+    "epsilon": 0.01,
+    "period": 200
+  },
+  "selectnet": {
+    "hidden_dim": [64]
+  },
+
+  "residual_sampler":{
+    "types": ["fixed", "random", "rad"],
+    "type": "fixed",
+    "adaptive_type": "non_gradual",
+    "period": 2000
+  },
+
+  "loss":{
+    "mse_treshold": [1e-1, 5e-2, 1e-2, 5e-3, 1e-3, 5e-4, 1e-4, 5e-5, 1e-5],
+    "l2_treshold": [5e-1, 3e-1, 1e-1, 1e-2],
+    "loss_no_improve_steps": 30
+  }
+}

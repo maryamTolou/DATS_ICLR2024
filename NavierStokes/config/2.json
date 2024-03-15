@@ -1,0 +1,47 @@
+{
+    "id": 6,
+    "stage": 2,
+    "seed": 500,
+    "model_type": "hyper-pinn",
+    "pde": "ns",
+    "device": "cuda:0",
+    "max_iter": 2000,
+    "random_f": false,
+    "optim": "adam",
+    "lr": 0.001,
+    "train_set": {
+      "num_train": 1000,
+      "num_bc": 5000,
+      "num_ic": 5000,
+      "f_scale": 0.01
+    },
+    "validate_set": {
+      "num_res": 1000,
+      "num_bc": 5000,
+      "num_ic": 5000
+    },
+    "sampler":{
+      "type": "dats",
+      "n_way": 6,
+      "use_all": true,
+      "eta": 0.08,
+      "start_random": false,
+      "residual_sampling": true,
+      "kl": "uniform",
+      "epsilon": 0.01,
+      "period": 200
+    },
+    "residual_sampler":{
+      "types": ["fixed", "random", "rad"],
+      "type": "fixed",
+      "adaptive_type": "non_gradual",
+      "period": 1
+    },
+    "params": [0.1, 0.2, 0.4, 0.6, 0.8, 1.0],
+    "test_params": [3.0, 5.0],
+    "loss":{
+      "mse_treshold": [1e-1, 5e-2, 1e-2, 5e-3, 1e-3, 5e-4, 1e-4, 5e-5, 1e-5],
+      "l2_treshold": [5e-1, 3e-1, 1e-1, 1e-2],
+      "loss_no_improve_steps": 30
+    }
+  }
