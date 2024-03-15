@@ -34,9 +34,9 @@ class MODEL():
         self.model_type = model_type
         self.tag = model_type + '_' + hparams.sampler['type'] + '_' + str(hparams.id) + '_' + str(hparams.seed) + '_num_' + str(hparams.num_train) 
         if model_type == 'mad-pinn':
-            self.output_path = "results_burger_mad/figures/{}".format(self.tag)
+            self.output_path = "results/figures/{}".format(self.tag)
         else:
-            self.output_path = "results_burger_hyper/figures/{}".format(self.tag)
+            self.output_path = "results/figures/{}".format(self.tag)
         if not os.path.exists(self.output_path):
             os.makedirs(self.output_path)
         if not os.path.exists(self.output_path + '/epoch_figs'):
@@ -832,9 +832,9 @@ class MODEL():
         hparams = self.hparams
         
         if self.model_type == 'mad-pinn':
-           output_path = "results_burger_mad/figures/{}".format(self.tag)
+           output_path = "results/figures/{}".format(self.tag)
         else:
-            output_path = "results_burger_hyper/figures/{}".format(self.tag)  
+            output_path = "results/figures/{}".format(self.tag)  
 
         with open(output_path + '/loss_values.json', 'r') as handle:
             losses = json.load(handle)
